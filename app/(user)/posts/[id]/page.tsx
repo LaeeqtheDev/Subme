@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 
 
 async function PostPage({params}: { params: { id: string } }) {
-    const { id } =  await params;
+    const { id } =   params;
     const post = await getPost(id)
 
     if(!post)  return notFound()
