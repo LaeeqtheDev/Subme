@@ -1,132 +1,96 @@
-Here’s a detailed `README.md` for your **Subme** project, including purpose, setup instructions, tech stack, and links to the deployed [Sanity Studio](https://subme.sanity.studio/):
+Subme
+Subme is a tier-based subscription content platform where creators can publish exclusive posts with controlled access levels (VIP, Crew, Backstage). Users can also leave comments on each post. The project is powered by Next.js, TypeScript, and Sanity CMS.
 
----
+🧠 Sanity Studio: https://subme.sanity.studio/
 
-````md
-# Subme
+✨ Features
+Rich-text post creation using Sanity's block content editor
 
-**Subme** is a subscription-based content platform where creators can publish tiered-access posts (e.g., for VIP, Crew, or Backstage members) and receive comments from readers. The platform is powered by **Next.js**, **Sanity CMS**, and **TypeScript** with structured content modeling.
+Role-based access (vip, crew, backstage) per post
 
-> 🌐 **Sanity Studio:** [https://subme.sanity.studio/](https://subme.sanity.studio/)
+Cover image support (hotspot, crop, alt)
 
----
+Portable Text rendering with full formatting
 
-## 📸 Features
+Comment system with name, image, and email fields
 
-- 📝 Rich text post creation via Sanity Studio
-- 🔐 Tiered access control for content (VIP, Crew, Backstage)
-- 🧑‍💬 User comments support with name, email, and image
-- 🖼️ Cover images with support for crop, hotspot, alt text
-- 🔄 Dynamic rendering of block content in frontend
-- 💬 Markdown-style comments linked to each post
-- 🚀 Fully typed with TypeScript
+Fully typed with TypeScript for better DX
 
----
+Modular and scalable codebase
 
-## 🏗️ Tech Stack
+🧱 Sanity Studio
+Sanity Studio is used to manage content for this app. You can visit the studio here:
 
-| Technology      | Purpose                                  |
-|----------------|-------------------------------------------|
-| **Next.js**     | Frontend rendering & routing             |
-| **Sanity CMS**  | Headless content management              |
-| **TypeScript**  | Type safety and developer experience     |
-| **Tailwind CSS**| (If used) Styling                        |
-| **Portable Text** | Rich content blocks rendering         |
+🔗 https://subme.sanity.studio/
 
----
+You can:
 
-## 🧱 Sanity Studio
+Create & edit posts
 
-Sanity Studio is hosted and accessible at:
+Upload & configure cover images
 
-👉 **[https://subme.sanity.studio/](https://subme.sanity.studio/)**
+Assign tier-based access levels
 
-There, you can:
-- Create/edit/delete posts
-- Upload cover images
-- Set tier access per post
-- Manage comments
-- Structure content using block editor
+View and manage user comments
 
----
-
-## 🛠️ Getting Started (Local Setup)
-
-### 1. Clone the repository
-
-```bash
+🚀 Getting Started (Local Setup)
+1. Clone the repository
+bash
+Copy
+Edit
 git clone https://github.com/yourusername/subme.git
 cd subme
-````
-
-### 2. Install dependencies
-
-```bash
+2. Install dependencies
+nginx
+Copy
+Edit
 npm install
-```
+3. Create .env.local file
+Add the following environment variables:
 
-### 3. Set up environment variables
-
-Create a `.env.local` file and include your Sanity project configuration:
-
-```env
+ini
+Copy
+Edit
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=your_admin_or_read_token
-```
+SANITY_API_TOKEN=your_sanity_token
+Replace your_project_id and your_sanity_token with your actual values from Sanity.
 
-### 4. Run the development server
-
-```bash
+4. Run the development server
+arduino
+Copy
+Edit
 npm run dev
-```
+Open http://localhost:3000 in your browser.
 
-Visit `http://localhost:3000` to view the app.
+📘 Types Overview
+This project uses a custom GetPostQueryResult type for posts returned from Sanity. It includes:
 
----
+Basic post metadata: _id, _createdAt, _rev
 
-## 🧩 Types Overview
+title (optional)
 
-The core type is `GetPostQueryResult`, which represents the full post object including:
+body: Portable Text array with block-level formatting (headings, blockquote, lists)
 
-* `_id`, `_createdAt`, `_rev` metadata
-* `title` and `body` (Portable Text)
-* `tierAccess` (VIP, Crew, Backstage)
-* `coverImage` with `hotspot`, `crop`, and `alt`
-* Nested `comments` with user info
+tierAccess: 'vip' | 'crew' | 'backstage'
 
----
+coverImage: includes asset, hotspot, crop, alt
 
-## ✍️ Author
+comments: array of comment objects (_id, email, comment, name, etc.)
 
-Made by [Syed Laeeq Ahmed](https://www.linkedin.com/in/syed-laeeq-ahmed/)
+All types are strictly typed with TypeScript for reliability and clarity.
 
-> 📬 Email: [laeeqthedev@icloud.com](mailto:laeeqthedev@icloud.com)
-> 🔗 GitHub: [github.com/LaeeqtheDev](https://github.com/LaeeqtheDev)
+🧑 Author
+Made with ❤️ by Syed Laeeq Ahmed
 
----
+📬 Email: laeeqahmed656@gmail.com
 
-## 📦 Deployment
+🧑‍💻 GitHub: github.com/LaeeqtheDev
 
-* Frontend can be deployed via **Vercel**
-* Sanity Studio is already deployed at [subme.sanity.studio](https://subme.sanity.studio)
+🌍 Deployment
+Frontend: Deploy via Vercel
 
----
+CMS: Sanity Studio deployed here
 
-## 🔐 License
-
-This project is open-sourced for learning and personal portfolio usage. For commercial use, please contact the author.
-
-```
-
----
-
-Let me know if you'd like to include:
-
-- Screenshots or a demo GIF
-- Instructions for running Sanity Studio locally
-- API routes / GROQ query details
-- Deployment badge for Vercel or Netlify
-
-I can also create a markdown version with those additions.
-```
+📄 License
+Free to use for educational or portfolio purposes. Commercial use is prohibited without permission from the author.
