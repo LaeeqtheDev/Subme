@@ -1,4 +1,4 @@
-```
+
 ---
 
 # 3D Portfolio
@@ -91,4 +91,3 @@ Made with 🚀 by [Syed Laeeq Ahmed](https://www.linkedin.com/in/syed-laeeq-ahme
 Free to use for portfolio or educational purposes. Commercial or agency use requires attribution or permission from the author.
 
 ---
-```
