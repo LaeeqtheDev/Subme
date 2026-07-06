@@ -1,4 +1,5 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs/server"
 import Link from "next/link"
 import { Button } from "./button"
 import {HeartIcon} from "lucide-react"
@@ -11,13 +12,13 @@ import CurrentTierBadge from "../Badge/CurrentTierBadge"
 
 async function Header() {
   const siteSettings = await getSiteSettings()
-  console.log(siteSettings, "siteSettings")
-  console.log("siteSettings", siteSettings)
+  const user = await currentUser()
+  const logoHref = user ? "/feed" : "/"
   return (
     <header className="flex items-center justify-between p-4 border-b border-gray-200">
       {/*Left Side */}
         <div>
-          <Link href={"/"}>
+          <Link href={logoHref}>
             {siteSettings?.data?.headerLogo ?(
               <Image
               src={urlFor(siteSettings?.data?.headerLogo).url()}
@@ -32,6 +33,14 @@ async function Header() {
 
           </Link>
         </div>
+      {/*Center Nav */}
+      <SignedIn>
+        <nav className="hidden sm:flex items-center gap-6 text-sm font-medium text-gray-600">
+          <Link href="/feed" className="hover:text-gray-900 transition-colors">Feed</Link>
+          <Link href="/pricing" className="hover:text-gray-900 transition-colors">Pricing</Link>
+        </nav>
+      </SignedIn>
+
        {/*Right Side */}
        <div>
         <SignedIn>

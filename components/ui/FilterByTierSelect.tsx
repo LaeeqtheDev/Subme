@@ -9,9 +9,9 @@ function FilterByTierSelect() {
 
   const handleValueChange = (value: string) => {
     if (value === "all") {
-      router.push("/");
+      router.push("/feed");
     } else {
-      router.push(`/?tier=${value}`);
+      router.push(`/feed?tier=${value}`);
     }
   }
 

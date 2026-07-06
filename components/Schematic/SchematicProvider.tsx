@@ -8,7 +8,7 @@ import { useUser } from '@clerk/nextjs';
 const publishableKey = process.env.NEXT_PUBLIC_SCHEMATIC_PUBLISHABLE_KEY; // Example usage
 
 if(!publishableKey){
-    throw new Error("Schematic publishable key is not defined. Please set NEXT_PUBLIC_SCHEMATIC_KEY in your environment variables.");
+    throw new Error("Schematic publishable key is not defined. Please set NEXT_PUBLIC_SCHEMATIC_PUBLISHABLE_KEY in your environment variables.");
 }
 const SchematicWrapped = ({ children }: { children: React.ReactNode }) => {
     const {identify} = useSchematicEvents();

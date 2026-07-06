@@ -1,9 +1,9 @@
 "use client"
 import useMembershipTier from '@/hooks/useMembershipTier'
-import { GetPostQueryResult } from '@/sanity.types'
+import { GetPostsQueryResult } from '@/sanity.types'
 import { TierAccess, tierMap } from '@/types/types';
 import { useUser } from '@clerk/nextjs';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LockedPost from './LockedPost';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,16 +11,22 @@ import { urlFor } from '@/sanity/lib/image';
 import Badge from '../Badge/Badge';
 import { PortableText } from "@portabletext/react"
 import { MessageCircleIcon } from 'lucide-react';
-//@ts-ignore
 import TimeAgo from 'react-timeago';
 
-function Post({posts}:{posts: GetPostQueryResult[number]}) {
+function Post({posts}:{posts: GetPostsQueryResult[number]}) {
     const membershipTier = useMembershipTier();
     const {user} = useUser()
+    // Schematic's flags (and Clerk's user) resolve client-side only, and can
+    // differ from what the server rendered (e.g. cached flag values). Forcing
+    // the loading skeleton on the very first client render - regardless of
+    // membershipTier - guarantees it matches the server's HTML exactly, and
+    // avoids a hydration mismatch. Real content appears right after mount.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
 
     const postMembershipLevel = tierMap[posts.tierAccess as TierAccess];
     const isLocked = membershipTier && membershipTier < postMembershipLevel; 
-    if(!membershipTier)
+    if(!mounted || !membershipTier)
     return (
     <div className='bg-white rounded-lg shadow-lg relative animate-pulse'>
       {posts.coverImage && (

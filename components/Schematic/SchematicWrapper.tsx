@@ -7,7 +7,17 @@ async function SchematicWrapper({componentId}:{componentId: string}) {
 
 
     if (!accesstoken) {
-        throw new Error("No access token found for user");
+        return (
+            <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
+                <p className="text-gray-700 font-medium">
+                    Still setting up your account...
+                </p>
+                <p className="text-sm text-gray-500 max-w-sm">
+                    This can take a few seconds right after signing in. Refresh
+                    the page in a moment.
+                </p>
+            </div>
+        );
     }
   return (
     <SchematicembeddedComponent

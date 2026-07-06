@@ -5,8 +5,7 @@ import Image from "next/image"
 import { urlFor } from "@/sanity/lib/image"
 import TierBadge from "./TierBadge"
 import CreatedAt from "./CreatedAt"
-//@ts-ignore
-function LockedPost({ post }: { post: GetPostQueryResult[number] }) {
+function LockedPost({ post }: { post: GetPostQueryResult }) {
   return (
     <Link href="/pricing">
       <article className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group cursor-pointer relative`}>

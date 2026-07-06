@@ -1,5 +1,4 @@
 "use client"
-// @ts-ignore
 
 import TimeAgo from "react-timeago";
 

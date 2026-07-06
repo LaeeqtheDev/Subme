@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
-import Header from "@/components/ui/Header";
-import DMButton from "@/components/ui/DMButton";
 
 export const metadata: Metadata = {
   title: "Subme – Where Fans Fuel Creators",
   description: "Subme is a creator-powered platform where fans can subscribe, support, and unlock exclusive content. Built for creators, artists, and influencers to monetize their passion and connect deeper with their audience.",
 };
 
-export default function UserLayout({
+export default function MarketingLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <Header />
-      {children}
-      <div className="fixed bottom-4 right-4">
-        <DMButton />
-      </div>
-    </>
-  );
+  return <>{children}</>;
 }

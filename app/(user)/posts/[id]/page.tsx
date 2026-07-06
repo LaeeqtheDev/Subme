@@ -1,18 +1,16 @@
-//@ts-nocheck
 import Badge from "@/components/Badge/Badge";
 import Comments from "@/components/ui/Comments";
 import CreatedAt from "@/components/ui/CreatedAt";
 import { urlFor } from "@/sanity/lib/image";
 import { getPost } from "@/sanity/lib/post/getPost";
-import posts from "@/sanity/schemaTypes/posts";
 import { PortableText } from "@portabletext/react";
 import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-async function PostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+async function PostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const post = await getPost(id);
 
   if (!post) return notFound();
@@ -46,7 +44,7 @@ async function PostPage({ params }: { params: { id: string } }) {
       )}
 
       <div className="max-w-3xl mx-auto px-4 py-12">
-        <Link href="/" className="text-sm text-gray-500 flex gap-2 items-center mb-6">
+        <Link href="/feed" className="text-sm text-gray-500 flex gap-2 items-center mb-6">
           <ArrowLeftIcon className="w-4 h-4" />
           Return to Posts
         </Link>
